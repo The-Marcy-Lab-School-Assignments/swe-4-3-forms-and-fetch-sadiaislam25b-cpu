@@ -1,6 +1,6 @@
 # Assignment 4.3 - PokéCatch (Vite + Fetch + Forms)
 
-**Table of Contents**
+((**Table of Contents**
 - [Reminders](#reminders)
 - [Setup](#setup)
 - [Short Response](#short-response)
