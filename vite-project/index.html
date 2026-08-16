@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex</title>
+  </head>
+  <body>
+    <h1>Discover Pokémon</h1>
+
+    <!-- PART 2: form to "capture" a Pokémon -->
+    <form id="capture-form">
+      <h2>Capture a Pokémon</h2>
+
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" />
+      </div>
+
+      <div>
+        <label for="types">Types</label>
+        <input type="text" id="types" name="types" />
+      </div>
+
+      <div>
+        <label for="isFavorite">Favorite?</label>
+        <input type="checkbox" id="isFavorite" name="isFavorite" />
+      </div>
+
+      <button type="submit">Capture!</button>
+    </form>
+
+    <!-- PART 1: message + success elements -->
+    <p id="error"></p>
+    <p id="success"></p>
+
+    <!-- PART 1: button to encounter a new random Pokémon -->
+    <button id="discover-button">Discover a Pokémon!</button>
+
+    <!-- PART 1: list where discovered Pokémon will be rendered -->
+    <ul id="discovered-list"></ul>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

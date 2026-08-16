@@ -8,23 +8,37 @@ The following code logs `undefined` in the second `.then()`. Identify the bug an
 fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
   .then((response) => {
     if (!response.ok) throw Error(`Fetch failed.`);
-    const readingPromise = response.json();
+    return response.json();
   })
   .then((data) => {
-    console.log(data); // undefined!
+    return data; // return it!
   })
   .catch((error) => console.error(error.message));
 ```
 
 **Your Answer:**
 
-
+```js
+fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+  .then((response) => {
+    if (!response.ok) throw Error(`Fetch failed.`);
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data); // return it!
+  })
+  .catch((error) => console.error(error.message));
+```
 ## Question 2: Development Servers and CORS
 
 A student opens their `index.html` file directly in the browser (using the `file://` protocol). Their `<script type="module">` tag and `fetch()` call both fail. Explain why, and what they should do instead.
 
 **Your Answer:**
-
+Fix:
+Use a development server instead, such as:
+Live Server in VS Code
+npx serve
+npm run dev (if using Vite)
 
 ## Question 3: The `fetch` Response Object
 
@@ -37,7 +51,7 @@ const data = await response.json();
 
 **Your Answer:**
 
-
+We check response.ok because fetch() does not fail for HTTP errors like 404 or 500. It only fails if there is a network problem. So even if the server returns an error, fetch() will still move forward unless we check response.ok. By checking it and throwing an error, we make sure those problems are handled in the catch block.
 
 ## Question 4: Async/Await Conversion
 
@@ -60,7 +74,24 @@ const getJoke = () => {
 ```
 
 **Your Answer:**
+```js
+const getJoke = async () => {
+  try {
+    const response = await fetch('https://v2.jokeapi.dev/joke/Programming?type=twopart');
 
+    if (!response.ok) {
+      throw Error(`Fetch failed. ${response.status}`);
+    }
+
+    const data = await response.json();
+    return { data, error: null };
+
+  } catch (error) {
+    return { data: null, error };
+  }
+};
+
+```
 
 
 ## Question 5: `event.preventDefault()` and Form Handling
@@ -77,7 +108,7 @@ form.addEventListener('submit', (event) => {
 What is wrong? What happens when they click submit, and how do they fix it?
 
 **Your Answer:**
-
+The problem is that they forgot to call event.preventDefault(). When they click submit, the form reloads the page, so the displayed data disappears immediately. They can fix it by adding event.preventDefault() at the start of the submit handler.
 
 
 ## Question 6: Putting It All Together
@@ -97,3 +128,4 @@ The steps below describe how to build a form that fetches Pokemon data from `htt
 
 **Your Answer:**
 
+J → E → B → G → H → C → A → D → I → F
